@@ -16,7 +16,7 @@ function App() {
     const savedTheme = localStorage.getItem("theme");
     if(savedTheme == "dark"){
       setisDarkmode(true);
-      document.getElement.classList.add("dark");
+      document.documentElement.classList.add("dark");
     }
   },[]);
 
@@ -55,13 +55,20 @@ function App() {
     </button>
       
       <div
-        className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat"
+        className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat transition-all duration-300 ease-in-out"
         style={{
-            backgroundImage: `url('https://images.pexels.com/photos/3532540/pexels-photo-3532540.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')`,
-        }}
+          backgroundImage: `url('${
+            isDarkmode
+                ? "https://i.pinimg.com/736x/fa/2a/da/fa2ada730010d21b609fdf087b49cbd9.jpg" // Dark mode image
+                : "https://i.pinimg.com/736x/d2/8e/2e/d28e2e29ce756244654cff788acffda0.jpg" // Bright mode image
+                
+        }')`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center", }}
     >
         <div className="w-full">
-            <div className="w-full max-w-md mx-auto border border-gray-60 rounded-lg p-5 backdrop-blur-sm bg-white/30">
+            <div className="w-full max-w-md mx-auto border border-gray-300 dark:border-gray-600 rounded-lg p-5 backdrop-blur-sm bg-white/30 dark:bg-black/30">
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
